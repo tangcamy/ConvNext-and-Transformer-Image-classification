@@ -10,16 +10,19 @@ def makedirs(path):
         return
 
 projectfile='FMA'#'FMA'
-csvtotalname = 'FMA_Process_less'
+csvtotalname = 'FMA_0116'
 base_root='/home/orin/L5C_CellFMA/DeepHieral/'
 root=base_root+'dataset/'+projectfile
 dataset_root=root+'/row/'
+detect_dataset_root=root+'/row_detect/'
 train_root = root+'/train/'
 test_root = root+'/test/'
+detect_root=root+'/detect/'
+
 
 makedirs(train_root)
 makedirs(test_root)
-
+makedirs(detect_root)
 
 
 def NameListCheck(value):
@@ -28,8 +31,8 @@ def NameListCheck(value):
     FileNmae = a[0]
     LocationFlag = a[1]
     DefectLocate = a[2]
-    site = a[3]
-    return FileNmae,LocationFlag,DefectLocate,site
+    #site = a[3]
+    return FileNmae,LocationFlag,DefectLocate
 
 def imgDataClean(fileName,dataset,rowroot,dstroot,typeset,datalen):
     makedirs(dstroot+fileName+'/')
@@ -73,7 +76,7 @@ def process_data(rootPic):
     for i in os.listdir(rootPic):
         #i='GLASS CULLET@UCT@TFT@Cell'
         fileList = list(filter(lambda x: x[-4:]=='.jpg', os.listdir(rootPic+i)))
-        if len(fileList)>=80:
+        if len(fileList)>=1: #80
             print('------------Data:'+str(i))
             cutNumber = int(len(fileList)*0.9)
             trainData = fileList[0:cutNumber]
@@ -88,7 +91,23 @@ def process_data(rootPic):
             #print('---------DataLess:'+str(i))
             DataLess(i,fileList)               
 
-
+def detect_process_data(rootdetectPic):
+    '''rootdetectPic:detect 來源'''
+    for fileName in os.listdir(rootdetectPic):
+        #i='GLASS CULLET@UCT@TFT@Cell'
+        fileList = list(filter(lambda x: x[-4:]=='.jpg', os.listdir(rootdetectPic+fileName)))
+        print('------------Data:'+str(fileName))
+        print(fileList)
+        for img in fileList:
+            shutil.copyfile(rootdetectPic+fileName+'/'+img, detect_root+img) 
+            print(detect_root+img)    
 
 if __name__ == '__main__':
-    process_data(dataset_root)
+    select_type='train'#test
+    if select_type =='train':
+        #--row: train/test
+        process_data(dataset_root)
+    elif select_type =='test':
+    #--row_detect:detect
+        detect_process_data(detect_dataset_root)
+        

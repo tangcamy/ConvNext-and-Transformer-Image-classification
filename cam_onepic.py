@@ -14,7 +14,7 @@ num_class1 = 2
 num_class2 = 4  
 num_class3 = 14 
 
-modelName = './pth/FMA_Filter_Tiny/convnet_final_B_filter.pth' #更換為訓練好的模型
+modelName = './pth/FMA_Tiny/convnet_final_B.pth' #更換為訓練好的模型
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
 
@@ -106,3 +106,4 @@ cv2.putText(result, text, (20, 20), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale
 
 image_name_ = 'output'
 cv2.imwrite(CAM_RESULT_PATH + image_name_ + '_' + 'pred_' + class_[idx[0]] + '.jpg', result)
+print(CAM_RESULT_PATH + image_name_ + '_' + 'pred_' + class_[idx[0]] + '.jpg')

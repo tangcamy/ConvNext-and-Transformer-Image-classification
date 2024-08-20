@@ -19,6 +19,7 @@ import math
 import csv
 #import os
 from tqdm import tqdm
+import pandas as pd
 
 train_dir = 'data/muti/train'
 test_dir = 'data/muti/test'
@@ -193,7 +194,7 @@ def train(model_select,modelsavename):
                     torch.save(model.state_dict(), modelsavename)#best.pkl
                     print('Save best statistics done:!'+str(epoch+1))
 
-                torch.save(model.state_dict(), modelsavename)#best.pkl
+                torch.save(model.state_dict(), modelfinalname)#final.pkl
     df=pd.DataFrame()
     df['trainLoss']=train_Loss
     df['test_Loss']=test_Loss
@@ -210,6 +211,7 @@ def train(model_select,modelsavename):
 if __name__ == '__main__':
     #select = convnext , transformer,resnet50
     model_select='resnet50'
-    modelsavename='resnet.pth'
+    modelsavename='resnet_best.pth'
+    modelfinalname='resnet_final.pth'
     train(model_select,modelsavename)
 

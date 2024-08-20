@@ -19,14 +19,15 @@ import math
 import csv
 #import os
 from tqdm import tqdm
-
-modelsavename = 'convnet_C_filter.pth'
+import pandas as pd
+modelsavename = 'convnetTiny_best_C.pth'
+modelfinalname = 'convnetTiny_final_C.pth'
 model_select ='convnext'
 train_dir = 'data/muti/train'
 test_dir = 'data/muti/test'
 num_classes1 = 2
-num_classes2 = 4
-num_classes3 = 14
+num_classes2 = 3
+num_classes3 = 12
 epoch_num = 100
 batch_size = 32
 t=10 #warmup
@@ -34,8 +35,8 @@ n_t=0.5
 lr_rate = 0.001
 target_name = {
 'name1':['TFT','CF'],
-'name2': ['NP','UP','OP','INT'],
-'name3': ['CF REPAIR FAIL','PI SPOT-WITH PAR','POLYMER','GLASS BROKEN','PV-HOLE-T','CF DEFECT','CF PS DEFORMATION','FIBER','AS-RESIDUE-E','LIGHT METAL','GLASS CULLET','ITO-RESIDUE-T','M1-ABNORMAL','ESD']
+'name2': ['NP','UP','OP'],
+'name3': ['AS-RESIDUE-E','CF DEFECT','CF PS DEFORMATION','CF REPAIR FAIL','FIBER','GLASS CULLET','ITO-RESIDUE-T','LIGHT METAL','M1-ABNORMAL','PI SPOT-WITH PAR','POLYMER','PV-HOLE-T']
 }
 
 def train():
@@ -187,12 +188,12 @@ def train():
                     torch.save(model.state_dict(), modelsavename)#best.pkl
                     print('Save best statistics done:!'+str(epoch+1))
 
-                torch.save(model.state_dict(), modelsavename)#best.pkl
+                torch.save(model.state_dict(), modelfinalname)#final.pkl
     df=pd.DataFrame()
     df['trainLoss']=train_Loss
     df['test_Loss']=test_Loss
     df['acc_list']=acc_list
-    df.to_csv('training.csv',index=False)
+    df.to_csv('training_share.csv',index=False)
     print('********acc_best********:' , best_out['acc_best'])
     print('********acc_best********:' , best_out['best_epoch'])
     print('********cm********:',best_out['cm1'] )

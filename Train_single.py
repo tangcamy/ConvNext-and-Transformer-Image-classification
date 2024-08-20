@@ -19,31 +19,26 @@ from tqdm import tqdm
 model_select = 'convnext'
 train_dir = 'data/single/train'
 test_dir = 'data/single/test'
-num_classes1 = 26
+num_classes1 = 2
 epoch_num = 100
 batch_size = 32
 t=10 #warmup
 n_t=0.5
 lr_rate = 0.001
 
+#cvd-2
+target_name ={
+'name':['CFAR_NG','CFAR_OK']
+}
+
+'''
 #20
 target_name = {
 'name': ['I-Nothing','T-PE-Hole','T-AS-Residue','I-PE-Abnormal','T-M2-Particle','E-AS-Residue','P-AS-Residue',
 'I-M2-Small-Hole','I-M2-Deformation','I-Oil-Like','T-AS-SiN-Hole','P-M2-Residue','I-Scratch','T-M1-Particle','P-M2-Open',
 'T-PE-Residue','I-M1-Deformation','P-PE-Residue','I-AS-Hole','P-M1-Residue']
 }
-#,'P-M1-Residue','P-M1-Open','T-M1-Particle-Residue','I-Unknown','T-M2-Particle-Residue','I-M1-Small-Hole','E-N+Residue'
-
-#target_name = {
-#'name':['T-AS-Residue','E-N+Residue','E-AS-Residue','T-PE-Hole','P-M1-Residue','P-M2-Residue','I-M1-Small-Hole']
-#}
-
-
-#target_name = {
-#'name':['T-AS-Residue','E-N+Residue','E-AS-Residue','T-PE-Hole','P-M1-Residue','P-M2-Residue','I-M1-Small-Hole',
-#'T-AS-SiN-Hole','P-AS-Residue','T-M2-Particle','I-PE-Abnormal','I-Scratch']
-#}
-
+'''
 
 def train(target_name):
     acc_best = 0
@@ -145,10 +140,10 @@ def train(target_name):
                         'cm':cm1
                     }
         
-                    torch.save(model.state_dict(), 'convnet_best_Single.pth')#best.pkl
+                    torch.save(model.state_dict(), 'CFAR_best_Single.pth')#best.pkl
                     print('Save best statistics done:!'+str(best_epoch))
 
-                torch.save(model.state_dict(), 'convnet_final_Single.pth')#best.pkl
+                torch.save(model.state_dict(), 'CFAR_final_Single.pth')#best.pkl
 
     df=pd.DataFrame()
     df['trainLoss']=train_Loss

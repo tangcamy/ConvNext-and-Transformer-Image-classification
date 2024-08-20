@@ -1,7 +1,7 @@
 import timm
 import torch
 import torch.nn as nn
-model_Type='convnext_tiny' #convnext_small
+model_Type='convnext_tiny' #convnext_small#convnext_tiny
 
 #特徵獨立＆一個預測值
 class Convnext_single(nn.Module):
@@ -70,8 +70,8 @@ class Convnext_sharefeature(nn.Module):
     def __init__(self, num_class1, num_class2, num_class3):
         super(Convnext_sharefeature, self).__init__()
 
-        model = timm.create_model(model_Type, pretrained=True, num_classes=0)
-        
+        model = timm.create_model(model_Type, pretrained=False0, num_classes=0)
+        self.stages = model #為了了讀取熱力圖，接出來的名稱stages
         model_s = torch.nn.Sequential(*(list(model.children())[1]))
 
         self.backbone = torch.nn.Sequential(*(list(model.children())[0]), *(list(model_s.children())[:-2]))

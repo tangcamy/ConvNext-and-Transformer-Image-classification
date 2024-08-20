@@ -7,6 +7,7 @@
 - [transformer computer -version](https://www.edge-ai-vision.com/2022/05/transformers-in-computer-vision/)
 - [Paper with code : Deep Hierarchical Classification for Category Prediction in E-commerce System ](https://paperswithcode.com/paper/deep-hierarchical-classification-for-category)
 
+
 # 資料夾說明
 - cam_pic(儲存熱力圖的資料夾)
 - dataset :放原始資料的地方，請先在此資料底下創見自己專案名稱資料夾。
@@ -21,16 +22,21 @@
     - level_dic.py:定義父子階層的字典。（目前3層結構)
 
 # Train 步驟
-## 〔　1. 資料前處理　〕
+## 〔　1. 資料前處理:處理後放在dataset，需複製於data〕
     - 單一輸出範例程式：process_dataset_KLA.py  
         - 輸出的資料夾(train&test)放置/data/single/
     - 多輸出(目前3個）範例程式：process_dataset_FMA.py
         - 輸出的資料夾(train&test)放置/data/muti/
-## 〔　2. DataLoader： 預設 input size224*224　〕
+
+## 〔　2. 相關設定：level_dict.py　〕
+    - 設定相關階層資料。
+
+## 〔　3. DataLoader： 預設 input size224*224　〕
     - dataset_single.py :單個輸出，
     - dataset_muti.py :3個輸出。
-## 〔　3.model選擇　〕
-    - 常見一般分類 （單輸出）single_train.py: Convnext_single / Transformer_single
+
+## 〔　4.model選擇:需改程式階層數量　〕
+    - 常見一般分類 （單輸出）Train_single.py: Convnext_single / Transformer_single
     - 常見一般分類（多輸出）Train_Feature_LayerLosspy : Convnext_muti / Transformer_muti
     - 階層式框架（特徵獨立）Train_Feature_Hierarchicalloss.py : Convnext_muti / Transformer_muti
     - 階層式框架（特徵共享）Train_ShareFeature_Hierarchicalloss.py : Convnext_sharefeature / Transformer_sharefeature

@@ -13,8 +13,9 @@ import math
 import csv
 import os
 from tqdm import tqdm
-
-modelsavename = 'convnet_a.pth'
+import pandas as pd
+modelsavename = 'convnet_best_a.pth'
+modelfinalname = 'convnet_final.pth'
 model_select = 'convnext'
 train_dir = 'data/muti/train'
 test_dir = 'data/muti/test'
@@ -147,7 +148,7 @@ def train():
                 if acc > acc_best:
                     acc_best = acc
                     best_epoch = epoch+1
-                   best_out={
+                    best_out={
                         'best_epoch':best_epoch,
                         'acc_best':acc_best,
                         'cm1':cm1,
@@ -157,7 +158,8 @@ def train():
                     torch.save(model.state_dict(), modelsavename)#best.pkl
                     print('Save best statistics done:!'+str(epoch+1))
 
-                torch.save(model.state_dict(), modelsavename)#best.pkl
+                torch.save(model.state_dict(), modelfinalname)#final.pkl
+    df=pd.DataFrame()
     df['trainLoss']=train_Loss
     df['test_Loss']=test_Loss
     df['acc_list']=acc_list

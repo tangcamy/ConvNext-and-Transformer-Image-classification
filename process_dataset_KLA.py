@@ -84,7 +84,6 @@ def process_data(rootPic):
 
 
 if __name__ == '__main__':
-    select_defect = ['I-Nothing','T-PE-Hole','T-AS-Residue','I-PE-Abnormal','T-M2-Particle','E-AS-Residue','P-AS-Residue',
-'I-M2-Small-Hole','I-M2-Deformation','I-Oil-Like','T-AS-SiN-Hole','P-M2-Residue','I-Scratch','T-M1-Particle','P-M2-Open',
-'T-PE-Residue','I-M1-Deformation','P-PE-Residue','I-AS-Hole','P-M1-Residue']
+    #select_defect = ['I-Nothing','T-PE-Hole','T-AS-Residue','I-PE-Abnormal','T-M2-Particle','E-AS-Residue','P-AS-Residue','I-M2-Small-Hole','I-M2-Deformation','I-Oil-Like','T-AS-SiN-Hole','P-M2-Residue','I-Scratch','T-M1-Particle','P-M2-Open','T-PE-Residue','I-M1-Deformation','P-PE-Residue','I-AS-Hole','P-M1-Residue']
+    select_defect=['CFAR_NG','CFAR_OK']
     process_data(dataset_root)
