@@ -19,14 +19,14 @@ import csv
 #import os
 from tqdm import tqdm
 import pandas as pd
-modelsavename = 'best_B_240430_22Defect.pth'
-modelfinalname = 'final_B_240430_22Defect.pth'
+modelsavename = 'best_B_240822_16Defect.pth'
+modelfinalname = 'final_B_240822_16Defect.pth'
 model_select ='convnext'
 train_dir = 'data/muti/train'
 test_dir = 'data/muti/test'
 num_classes1 = 2
 num_classes2 = 3
-num_classes3 = 22
+num_classes3 = 16
 epoch_num = 100
 batch_size = 32
 t=10 #warmup
@@ -39,13 +39,39 @@ lr_rate = 0.001
 #'name3': ['AS-RESIDUE-E','CF DEFECT','CF PS DEFORMATION','CF REPAIR FAIL','FIBER','GLASS CULLET','ITO-RESIDUE-T','LIGHT METAL','M1-ABNORMAL','PI SPOT-WITH PAR','POLYMER','PV-HOLE-T']
 #}
 
+'''2-3-17'''#
+#target_name = {
+#'name1':['TFT','CF'],
+#'name2': ['NP','UP','OP'],
+#'name3': ['ALCV FAIL','AS-RESIDUE-E','AS-RESIDUE-T','CELL REPAIR FAIL','CF DEFECT','CF PS DEFORMATION','CF REPAIR FAIL','FIBER','GLASS CULLET','ITO-ABNORMAL','LIGHT METAL','M2-RESIDUE-P','PI SPOT-NO PAR','PI SPOT-WITH PAR','POLYMER','SPI-POLYMER','V-POLYMER']
+#}
 
-'''2-3-22'''#
+
+'''2-3-16'''#
 target_name = {
 'name1':['TFT','CF'],
 'name2': ['NP','UP','OP'],
-'name3': ['ALCV FAIL','ALSR FAIL','AS-RESIDUE-E','AS-RESIDUE-T','CELL REPAIR FAIL','CF DEFECT','CF PS DEFORMATION','CF REPAIR FAIL','FIBER','GLASS CULLET','ITO-ABNORMAL','LIGHT METAL','M1-ABNORMAL','M1-PARTICLE','M2-ABNORMAL','M2-PARTICLE','M2-RESIDUE-P','PI SPOT-NO PAR','PI SPOT-WITH PAR','POLYMER','SPI-POLYMER','V-POLYMER']
+'name3': ['ALCV FAIL','AS-RESIDUE-E','CELL REPAIR FAIL','CF DEFECT','CF PS DEFORMATION','CF REPAIR FAIL','FIBER','GLASS CULLET','ITO-ABNORMAL','LIGHT METAL','M2-RESIDUE-P','PI SPOT-NO PAR','PI SPOT-WITH PAR','POLYMER','SPI-POLYMER','V-POLYMER']
 }
+
+
+
+'''2-3-14'''#
+#target_name = {
+#name1':['TFT','CF'],
+#'name2': ['NP','UP','OP'],
+#'name3': ['ALCV FAIL','AS-RESIDUE-E','CELL REPAIR FAIL','CF DEFECT','CF PS DEFORMATION','CF REPAIR FAIL','FIBER','GLASS CULLET','ITO-ABNORMAL','LIGHT METAL','M2-RESIDUE-P','PI SPOT-NO PAR','PI SPOT-WITH PAR','POLYMER']
+#}
+
+
+'''2-3-22'''#
+#target_name = {
+#'name1':['TFT','CF'],
+#'name2': ['NP','UP','OP'],
+#'name3': ['ALCV FAIL','ALSR FAIL','AS-RESIDUE-E','AS-RESIDUE-T','CELL REPAIR FAIL','CF DEFECT','CF PS DEFORMATION','CF REPAIR FAIL','FIBER','GLASS CULLET','ITO-ABNORMAL','LIGHT METAL','M1-ABNORMAL','M1-PARTICLE','M2-ABNORMAL','M2-PARTICLE','M2-RESIDUE-P','PI SPOT-NO PAR','PI SPOT-WITH PAR','POLYMER','SPI-POLYMER','V-POLYMER']
+#}
+
+
 
 def train():
     acc_best = 0

@@ -28,7 +28,7 @@
     - 多輸出(目前3個）範例程式：process_dataset_FMA.py
         - 輸出的資料夾(train&test)放置/data/muti/
 
-## 〔　2. 相關設定：level_dict.py　〕
+## 〔　2. 相關設定：level_dict.py　〕/model file裡面
     - 設定相關階層資料。
 
 ## 〔　3. DataLoader： 預設 input size224*224　〕

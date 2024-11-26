@@ -10,7 +10,7 @@ def makedirs(path):
         return
 
 projectfile='FMA'#'FMA'
-csvtotalname = 'FMA_0116'
+csvtotalname = 'FMA_240820'
 base_root='/home/orin/L5C_CellFMA/DeepHieral/'
 root=base_root+'dataset/'+projectfile
 dataset_root=root+'/row/'

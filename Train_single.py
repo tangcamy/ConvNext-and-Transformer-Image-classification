@@ -22,7 +22,7 @@ test_dir = 'data/single/test'
 num_classes1 = 2
 epoch_num = 100
 batch_size = 32
-t=10 #warmup
+t=30 #warmup 10 , 20,30
 n_t=0.5
 lr_rate = 0.001
 
@@ -140,10 +140,10 @@ def train(target_name):
                         'cm':cm1
                     }
         
-                    torch.save(model.state_dict(), 'CFAR_best_Single.pth')#best.pkl
+                    torch.save(model.state_dict(), 'CFAR_V2_1133_82-30best_Single.pth')#best.pkl
                     print('Save best statistics done:!'+str(best_epoch))
 
-                torch.save(model.state_dict(), 'CFAR_final_Single.pth')#best.pkl
+                torch.save(model.state_dict(), 'CFAR_V2_1133_82-30final_Single.pth')#best.pkl
 
     df=pd.DataFrame()
     df['trainLoss']=train_Loss
