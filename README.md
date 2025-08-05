@@ -29,7 +29,7 @@
         - 輸出的資料夾(train&test)放置/data/muti/
 
 ## 〔　2. 相關設定：level_dict.py　〕/model file裡面
-    - 設定相關階層資料。
+    - 設定相關階層資料。（多層才需要）
 
 ## 〔　3. DataLoader： 預設 input size224*224　〕
     - dataset_single.py :單個輸出，
