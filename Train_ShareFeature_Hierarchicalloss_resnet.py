@@ -55,7 +55,7 @@ def train(model_select,modelsavename):
 
     device = torch.device('cuda')
     if model_select =='convnext':
-        model = convnext.Convnext_sharefeature(num_class1=num_classes1, num_class2=num_classes2, num_class3=num_classes3).to(device)
+        model = convnext.Convnext_sharefeature(num_class1=num_classes1, num_class2=num_classes2, num_class3=num_classes3,device=device).to(device)
         parameters_1 = filter(lambda p: p.requires_grad, model.parameters())
         optimizer = torch.optim.AdamW(parameters_1, lr=lr_rate, weight_decay=1e-5)
         lambda1 = lambda epoch: (0.9*epoch / t+0.1) if epoch < t else  0.1  if n_t * (1+math.cos(math.pi*(epoch - t)/(epoch_num-t)))<0.1 else n_t * (1+math.cos(math.pi*(epoch - t)/(epoch_num-t)))

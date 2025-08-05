@@ -11,6 +11,7 @@
 # 資料夾說明
 - cam_pic(儲存熱力圖的資料夾)
 - dataset :放原始資料的地方，請先在此資料底下創見自己專案名稱資料夾。
+- weights: 放模型權重檔，可離線吃育訓練的模型進行訓練
 - data:
     - data/muti : 3個標籤lable data資料夾
     - data/single :單個標籤label data資料夾

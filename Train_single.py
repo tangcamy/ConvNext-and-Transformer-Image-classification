@@ -55,7 +55,7 @@ def train(target_name):
 
     device = torch.device('cuda')
     if model_select =='convnext':
-        model = convnext.Convnext_single(num_class=num_classes1).to(device)
+        model = convnext.Convnext_single(num_class=num_classes1,device=device).to(device)
     else:
         model = transformer.Transformer_single(num_class=num_classes1).to(device)
 
@@ -158,4 +158,3 @@ def train(target_name):
 
 if __name__ == '__main__':
     train(target_name)
-

@@ -62,12 +62,12 @@ def returnCAM(feature_conv, weight_softmax, class_idx):
 
 ''' Mode read'''
 ## - for single 
-#model = convnext.Convnext_single(num_class=num_classes1).to(device)
+#model = convnext.Convnext_single(num_class=num_classes1,device=device).to(device)
 
 ## for a b 
-model = convnext.Convnext_muti(num_class1=num_classes1, num_class2=num_classes2, num_class3=num_classes3).to(device)
+model = convnext.Convnext_muti(num_class1=num_classes1, num_class2=num_classes2, num_class3=num_classes3,device=device).to(device)
 ##　for c
-#model = convnext.Convnext_sharefeature(num_class1=num_classes1, num_class2=num_classes2, num_class3=num_classes3).to(device)
+#model = convnext.Convnext_sharefeature(num_class1=num_classes1, num_class2=num_classes2, num_class3=num_classes3,device=device).to(device)
 
 #model = model.to(device)
 model.load_state_dict(torch.load(modelName),False)

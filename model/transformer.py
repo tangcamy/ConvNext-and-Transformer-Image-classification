@@ -19,7 +19,7 @@ class Transformer_single(nn.Module):
         #--------type 1 ---------#
         self.backbone = model
         ## 自定義分類器
-        self.classifier = nn.Linear(self.backbone.num_features, num_class1, bias=True)
+        self.classifier = nn.Linear(self.backbone.num_features, num_class, bias=True)
 
         a =0
         for name, param in self.backbone.named_parameters():

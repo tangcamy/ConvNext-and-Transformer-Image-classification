@@ -18,7 +18,8 @@ modelName = './pth/FMA_Tiny/convnet_final_B.pth' #更換為訓練好的模型
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
 
-model_ft = convnext.Convnext_muti(num_class1=num_class1, num_class2=num_class2, num_class3=num_class3).to(device)
+#--記得選convnext.後面的class
+model_ft = convnext.Convnext_muti(num_class1=num_class1, num_class2=num_class2, num_class3=num_class3,device=device).to(device)
 model_ft.load_state_dict(torch.load(modelName),False)
 #讀取最後一層的輸出特徵圖
 model_feature = nn.Sequential(*(list(model_ft.stages.children())[:-2])) #模型取到外層(3): ConvNeXtStage結束

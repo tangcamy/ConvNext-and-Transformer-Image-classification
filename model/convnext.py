@@ -5,11 +5,18 @@ model_Type='convnext_tiny' #convnext_small#convnext_tiny
 
 #特徵獨立＆一個預測值
 class Convnext_single(nn.Module):
-    def __init__(self, num_class):
+    def __init__(self, num_class,device):
         super(Convnext_single, self).__init__()
-
-        model = timm.create_model(model_Type, pretrained=True, num_classes=0)
+        # 假如pretrained =True
+        # model = timm.create_model(model_Type, pretrained=True, num_classes=0)
         
+        # 假如pretrained =False 
+        model = timm.create_model(model_Type, pretrained=False, num_classes=0)
+        state_dict = torch.load('weights/convnext_tiny_1k_224_ema.pth', map_location=device)
+        state_dict = state_dict['model']
+        model.load_state_dict(state_dict, strict=False)
+        
+        self.stages = model #為了了讀取熱力圖，接出來的名稱stages
         model_s = torch.nn.Sequential(*(list(model.children())[1]))
 
         self.backbone = torch.nn.Sequential(*(list(model.children())[0]), *(list(model_s.children())[:-2]))
@@ -30,10 +37,19 @@ class Convnext_single(nn.Module):
         
 #特徵獨立＆三個預測值
 class Convnext_muti(nn.Module):
-    def __init__(self, num_class1, num_class2, num_class3):
+    def __init__(self, num_class1, num_class2, num_class3,device):
         super(Convnext_muti, self).__init__()
+        
+        # 假如pretrained =True
+        # model = timm.create_model(model_Type, pretrained=True, num_classes=0)
 
-        model = timm.create_model(model_Type, pretrained=True, num_classes=0)
+        # 假如pretrained =False 
+        model = timm.create_model(model_Type, pretrained=False, num_classes=0)
+        state_dict = torch.load('weights/convnext_tiny_1k_224_ema.pth', map_location=device)
+        state_dict = state_dict['model']
+        model.load_state_dict(state_dict, strict=False)
+
+        
         self.stages = model #為了了讀取熱力圖，接出來的名稱stages
         model_s = torch.nn.Sequential(*(list(model.children())[1]))
 
@@ -67,10 +83,18 @@ class Convnext_muti(nn.Module):
 
 #特徵共享&三個預測值
 class Convnext_sharefeature(nn.Module):
-    def __init__(self, num_class1, num_class2, num_class3):
+    def __init__(self, num_class1, num_class2, num_class3,device):
         super(Convnext_sharefeature, self).__init__()
 
-        model = timm.create_model(model_Type, pretrained=False0, num_classes=0)
+        # 假如pretrained =True
+        # model = timm.create_model(model_Type, pretrained=True, num_classes=0)
+
+        # 假如pretrained =False 
+        model = timm.create_model(model_Type, pretrained=False, num_classes=0)
+        state_dict = torch.load('weights/convnext_tiny_1k_224_ema.pth', map_location=device)
+        state_dict = state_dict['model']
+        model.load_state_dict(state_dict, strict=False)
+
         self.stages = model #為了了讀取熱力圖，接出來的名稱stages
         model_s = torch.nn.Sequential(*(list(model.children())[1]))
 
